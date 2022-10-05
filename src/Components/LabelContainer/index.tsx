@@ -1,7 +1,7 @@
-import React, {memo} from 'react';
-import {Text, View} from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
 
-import styles from './styles';
+import styles from "./styles";
 
 interface LabelContainerProps {
   title: string;
@@ -14,7 +14,7 @@ interface LabelContainerProps {
  * @param {React.ReactNode} children - children which we want inside the border
  * @returns
  */
-const LabelContainer: React.FC<LabelContainerProps> = ({title, children}) => {
+const LabelContainer: React.FC<LabelContainerProps> = ({ title, children }) => {
   return (
     <View>
       <Text style={styles.text}>{title}</Text>

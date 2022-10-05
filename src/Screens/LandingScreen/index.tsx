@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {Alert, Button, TextInput, View, Text} from 'react-native';
-import {Dropdown as DropdownComponent} from 'react-native-element-dropdown';
+import React, { useEffect, useState } from "react";
+import { Alert, Button, TextInput, View, Text } from "react-native";
+import { Dropdown as DropdownComponent } from "react-native-element-dropdown";
 
-import {LabelContainer, Loader} from '../../Components';
-import {difficultiesData, questionTypeData} from '../../Constants';
-import {DropDown} from '../../Models/Dropdown';
-import {navigate} from '../../Navigators/utils';
-import {useQuiz} from '../../Provider/questionProvider';
-import styles from './styles';
+import { LabelContainer, Loader } from "../../Components";
+import { difficultiesData, questionTypeData } from "../../Constants";
+import { DropDown } from "../../Models/Dropdown";
+import { navigate } from "../../Navigators/utils";
+import { useQuiz } from "../../Provider/questionProvider";
+import styles from "./styles";
 
 const LandingScreen = () => {
   const {
@@ -22,12 +22,12 @@ const LandingScreen = () => {
   //   const [categories, setCategories] = useState<DropDown[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<DropDown>();
   const [selectedQuestionType, setSelectedQuestionType] = useState<DropDown>(
-    questionTypeData[1],
+    questionTypeData[1]
   );
   const [selectedDifficulty, setSelectedDifficulty] = useState<DropDown>(
-    difficultiesData[0],
+    difficultiesData[0]
   );
-  const [numberOfQuestions, setNumberOfQuestions] = useState<string>('10');
+  const [numberOfQuestions, setNumberOfQuestions] = useState<string>("10");
 
   useEffect(() => {
     getCategoryData();
@@ -42,11 +42,11 @@ const LandingScreen = () => {
   useEffect(() => {
     if (quizQuestions) {
       if (quizQuestions.length > 0) {
-        navigate('Quiz');
+        navigate("Quiz");
       } else {
         Alert.alert(
-          'No data',
-          'No data for the selected values please try to change it',
+          "No data",
+          "No data for the selected values please try to change it"
         );
       }
     }
@@ -54,15 +54,15 @@ const LandingScreen = () => {
 
   function validateInput() {
     if (numberOfQuestions.length === 0) {
-      Alert.alert('Error', 'Number of question can not be blank');
+      Alert.alert("Error", "Number of question can not be blank");
       return;
     }
     if (parseInt(numberOfQuestions) <= 0 || parseInt(numberOfQuestions) > 50) {
-      Alert.alert('Error', 'Number of question can should be from 1 to 50');
+      Alert.alert("Error", "Number of question can should be from 1 to 50");
       return;
     }
     if (!selectedCategory) {
-      Alert.alert('Error', 'Invalid category');
+      Alert.alert("Error", "Invalid category");
       return;
     }
 
@@ -70,7 +70,7 @@ const LandingScreen = () => {
       parseInt(numberOfQuestions),
       selectedCategory?.id,
       selectedDifficulty.value,
-      selectedQuestionType.value,
+      selectedQuestionType.value
     );
   }
 
@@ -80,9 +80,8 @@ const LandingScreen = () => {
       {overallAnswerGiven > 0 && (
         <View style={styles.overallScoreBox}>
           <Text
-            style={
-              styles.scoreText
-            }>{`Overall score: ${overallScore}/${overallAnswerGiven}`}</Text>
+            style={styles.scoreText}
+          >{`Overall score: ${overallScore}/${overallAnswerGiven}`}</Text>
         </View>
       )}
       <LabelContainer title="Number of Questions:">
@@ -112,7 +111,8 @@ const LandingScreen = () => {
           valueField="value"
           value={selectedDifficulty}
           onChange={setSelectedDifficulty}
-          data={difficultiesData}></DropdownComponent>
+          data={difficultiesData}
+        ></DropdownComponent>
       </LabelContainer>
 
       <LabelContainer title="Select Type:">

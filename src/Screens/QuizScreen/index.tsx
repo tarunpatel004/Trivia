@@ -1,21 +1,21 @@
-import React, {useMemo, useState, useEffect} from 'react';
+import React, { useMemo, useState, useEffect } from "react";
 import {
   Button,
   Text,
   TouchableOpacity,
   useWindowDimensions,
   View,
-} from 'react-native';
-import RenderHtml from 'react-native-render-html';
+} from "react-native";
+import RenderHtml from "react-native-render-html";
 
-import {useQuiz} from '../../Provider/questionProvider';
-import styles from './styles';
-import {navigate} from '../../Navigators/utils';
+import { useQuiz } from "../../Provider/questionProvider";
+import styles from "./styles";
+import { navigate } from "../../Navigators/utils";
 
 const QuizScreen = () => {
   const {
     currentQuestionIndex,
-    quizQuestions,
+    quizQuestions = [],
     setCurrentQuestionIndex,
     setCurrentScore,
     setOverallScore,
@@ -23,15 +23,15 @@ const QuizScreen = () => {
     setOverallAnswerGiven,
   } = useQuiz();
   const [givenAnswer, setGivenAnswer] = useState<string | undefined>();
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (givenAnswer) {
-      setOverallAnswerGiven(answerGiven => answerGiven + 1);
+      setOverallAnswerGiven((answerGiven) => answerGiven + 1);
 
       if (givenAnswer === currentQuestion.correct_answer) {
-        setCurrentScore(currentScore => currentScore + 1);
-        setOverallScore(score => score + 1);
+        setCurrentScore((currentScore) => currentScore + 1);
+        setOverallScore((score) => score + 1);
       }
     }
   }, [givenAnswer]);
@@ -52,7 +52,7 @@ const QuizScreen = () => {
 
   const jumpNext = () => {
     if (currentQuestionIndex === quizQuestions.length - 1) {
-      navigate('Landing');
+      navigate("Landing");
       return;
     }
     setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -60,7 +60,7 @@ const QuizScreen = () => {
   };
 
   const getHTMLText = (text: string) => {
-    return {html: text};
+    return { html: text };
   };
 
   const renderAnswer = (item: string, index: number) => {
@@ -78,15 +78,16 @@ const QuizScreen = () => {
       <TouchableOpacity
         disabled={givenAnswer !== undefined}
         onPress={() => setGivenAnswer(item)}
-        key={'view' + index}
+        key={"view" + index}
         style={[
           styles.answerInputBox,
           item === givenAnswer && answerStyle,
           item === currentQuestion.correct_answer && inCorrectAnswerStyle,
-        ]}>
+        ]}
+      >
         <RenderHtml
           contentWidth={width}
-          key={'text' + index}
+          key={"text" + index}
           source={getHTMLText(item)}
         />
       </TouchableOpacity>
@@ -97,9 +98,8 @@ const QuizScreen = () => {
     <View style={styles.container}>
       <View style={styles.overallScoreBox}>
         <Text
-          style={
-            styles.scoreText
-          }>{`Score: ${currentScore}/${quizQuestions.length}`}</Text>
+          style={styles.scoreText}
+        >{`Score: ${currentScore}/${quizQuestions.length}`}</Text>
       </View>
 
       <Text style={styles.questionText}>{`Question: ${
@@ -119,7 +119,7 @@ const QuizScreen = () => {
         disabled={givenAnswer === undefined}
         onPress={jumpNext}
         title={
-          currentQuestionIndex === quizQuestions.length - 1 ? 'Finish' : 'Next'
+          currentQuestionIndex === quizQuestions.length - 1 ? "Finish" : "Next"
         }
       />
     </View>

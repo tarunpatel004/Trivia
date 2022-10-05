@@ -1,7 +1,10 @@
-import React, {useContext, createContext} from 'react';
-import {noop} from 'lodash';
+import React, { useContext, createContext } from "react";
+import { noop } from "lodash";
 
-import {UseQuizReturnType, useQuiz as useQuizInternal} from '../Hooks/useQuiz';
+import {
+  UseQuizReturnType,
+  useQuiz as useQuizInternal,
+} from "../Hooks/useQuiz";
 
 const initialContext: UseQuizReturnType = {
   isLoading: false,
@@ -27,7 +30,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const QuizProvider: React.FC<Props> = ({children}) => {
+export const QuizProvider: React.FC<Props> = ({ children }) => {
   const value = useQuizInternal();
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

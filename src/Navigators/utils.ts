@@ -7,7 +7,7 @@
 import {
   CommonActions,
   createNavigationContainerRef,
-} from '@react-navigation/native';
+} from "@react-navigation/native";
 
 type RootStackParamList = {
   Landing: string;
@@ -34,7 +34,7 @@ export function navigateAndReset(routes = [], index = 0) {
       CommonActions.reset({
         index,
         routes,
-      }),
+      })
     );
   }
 }
@@ -44,8 +44,8 @@ export function navigateAndSimpleReset(name: string, index = 0) {
     navigationRef.dispatch(
       CommonActions.reset({
         index,
-        routes: [{name}],
-      }),
+        routes: [{ name }],
+      })
     );
   }
 }

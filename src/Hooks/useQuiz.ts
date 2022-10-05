@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react';
-import {DropDown} from '../Models/Dropdown';
-import {Quiz} from '../Models/Quiz';
-import {getCategories, getQuestions} from '../Network';
+import { useState } from "react";
+
+import { DropDown } from "../Models/Dropdown";
+import { Quiz } from "../Models/Quiz";
+import { getCategories, getQuestions } from "../Network";
 
 export const useQuiz = () => {
   const [categories, setCategories] = useState<DropDown[]>([]);
@@ -17,7 +18,7 @@ export const useQuiz = () => {
       const categoriesResponse: DropDown[] = await getCategories();
       setCategories(categoriesResponse);
     } catch (error) {
-      console.log('Error in feting category: ', error);
+      console.log("Error in feting category: ", error);
     }
   };
 
@@ -25,7 +26,7 @@ export const useQuiz = () => {
     numberOfQuestions: number,
     selectedCategoryId: number,
     selectedDifficulty: string,
-    selectedQuestionType: string,
+    selectedQuestionType: string
   ) => {
     try {
       setIsLoading(true);
@@ -33,13 +34,13 @@ export const useQuiz = () => {
         numberOfQuestions,
         selectedCategoryId,
         selectedDifficulty,
-        selectedQuestionType,
+        selectedQuestionType
       );
       setIsLoading(false);
       setQuizQuestions(quizResponse);
       reset();
     } catch (error) {
-      console.log('Error in feting questions: ', error);
+      console.log("Error in feting questions: ", error);
     } finally {
       setIsLoading(false);
     }

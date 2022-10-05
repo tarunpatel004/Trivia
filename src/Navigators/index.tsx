@@ -1,11 +1,11 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import {LandingScreen, QuizScreen} from '../Screens';
-import {navigationRef} from './utils';
-import {QuizProvider} from '../Provider/questionProvider';
+import { LandingScreen, QuizScreen } from "../Screens";
+import { navigationRef } from "./utils";
+import { QuizProvider } from "../Provider/questionProvider";
 
 const ApplicationNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -28,6 +28,6 @@ export default ApplicationNavigator;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
 });

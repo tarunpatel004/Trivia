@@ -1,7 +1,7 @@
-import React, {memo, useState, useEffect} from 'react';
-import {Modal, View, Animated, Text, ActivityIndicator} from 'react-native';
+import React, { memo } from "react";
+import { ActivityIndicator, Modal, View } from "react-native";
 
-import styles from './styles';
+import styles from "./styles";
 
 interface LoadingIndicatorProps {
   isLoading: boolean;
@@ -12,9 +12,9 @@ interface LoadingIndicatorProps {
  * @param {boolean} isLoading - if true then it will display the
  * @returns
  */
-const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({isLoading}) => {
+const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({ isLoading }) => {
   return isLoading ? (
-    <Modal key={'modal'} transparent={true} animationType={'none'}>
+    <Modal key={"modal"} transparent={true} animationType={"none"}>
       <View style={styles.modalBackground}>
         <ActivityIndicator />
       </View>

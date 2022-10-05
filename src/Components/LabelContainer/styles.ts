@@ -1,21 +1,21 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   borderView: {
     height: 48,
     paddingHorizontal: 12,
-    width: '100%',
+    width: "100%",
     marginTop: 4,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginBottom: 20,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#bababa',
+    borderColor: "#bababa",
   },
   text: {
-    color: 'black',
+    color: "black",
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 
